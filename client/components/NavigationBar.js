@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class NavigationBar extends React.Component {
     render() {
@@ -12,7 +13,7 @@ class NavigationBar extends React.Component {
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                   </button>
-                  <a className="navbar-brand" href="#">My Tech Monitoring</a>
+                  <Link to="/" className="navbar-brand">My Tech Monitoring</Link>
                 </div>
                 <div id="navbar" className="navbar-collapse collapse">
                   <form className="navbar-form navbar-right">
