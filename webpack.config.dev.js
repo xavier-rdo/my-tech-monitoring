@@ -25,6 +25,10 @@ module.exports = {
           path.join(__dirname, 'client')
         ],
         loaders: [ 'react-hot', 'babel' ]
+      },
+      {
+        test: /\.css$/,
+        loaders: [ 'style', 'css', 'sass' ]
       }
     ]
   },
