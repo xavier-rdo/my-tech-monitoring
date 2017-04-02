@@ -14,6 +14,7 @@ const techResourcesRepository = new TechResourcesRepository();
 
 let app = express();
 
+app.disable('x-powered-by'); // cf. http://expressjs.com/en/advanced/best-practice-security.html
 app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
@@ -30,6 +31,7 @@ app.use(webpackHotMiddleware(compiler));
 /* Serve static content from public build directory : */
 app.use('/build', express.static(__dirname + '/public/build'));
 
+// @todo: move this in a dedicated module cf. http://expressjs.com/en/guide/routing.html#express-router */
 app.get('/api/techresources', (req, res) => {
     techResourcesRepository.getAllResources()
         .then(function(data) {
