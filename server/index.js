@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
+import favicon from 'serve-favicon';
 
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
@@ -14,6 +15,7 @@ const techResourcesRepository = new TechResourcesRepository();
 let app = express();
 
 app.use(bodyParser.json());
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 const compiler = webpack(webpackConfig);
 
