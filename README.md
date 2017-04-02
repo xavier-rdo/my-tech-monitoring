@@ -16,7 +16,7 @@ This Web app is based on the following technologies and patterns:
 
 ## Postgres database bootstrapping through Docker
 
-The [`Dockerfile`](docker/Postgres/Dockerfile) file creates a new Docker image based on the latest `Postgres` official image and runs some bootstrapping SQL scripts (from the [docker/Postgres/src](docker/Postgres/src) folder) that create : 
+This project embeds a [`Dockerfile`](docker/Postgres/Dockerfile) that creates a new Docker image based on the latest `Postgres` official image and runs some bootstrapping SQL scripts (from the [docker/Postgres/src](docker/Postgres/src) folder) that create :
 
 * an `app` user (password `app`)
 * an `app` database
@@ -49,7 +49,7 @@ The [`Dockerfile`](docker/Postgres/Dockerfile) file creates a new Docker image b
     docker build -t my-tech-monitoring-db .
     ## Start the database container as daemon and map Postgres' port 5432 to host:
     docker run --name my-tech-monitoring-db-server -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d my-tech-monitoring-db
-    ## Start the container once again to connect to the database through PSQL :
+    ## [Optional, for demo purposes only] Start the container once again in TTY mode in order to connect to the database through PSQL :
     docker run -it --rm --name my-tech-monitoring-db-cli --link my-tech-monitoring-db-server:postgres my-tech-monitoring-db psql -h postgres -U postgres
     ## Nota: Password for `postgres` role is `postgres`
     ## After connexion, switch to `app` database :
