@@ -1,10 +1,13 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# dependencies
+# JS dependencies
 /node_modules
 
 # testing
 /coverage
+
+# var dir (Postgres data, etc.)
+/var
 
 # production
 /server/public/build
