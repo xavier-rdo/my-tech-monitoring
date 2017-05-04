@@ -6,8 +6,9 @@ import {
 } from 'react-router-dom';
 
 import './App.css';
-import NavigationBar from './NavigationBar';
 import Homepage from './Homepage';
+import NavigationBar from './NavigationBar';
+import Footer from './Footer';
 
 class App extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class App extends React.Component {
         <div className="App">
           <NavigationBar />
           <Route exact path="/" component={Homepage}/>
+          <Footer />
         </div>
       </Router>
     );

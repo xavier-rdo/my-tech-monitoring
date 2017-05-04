@@ -4,7 +4,7 @@ class Homepage extends React.Component {
   render() {
     return (
         <div className="container">
-            <p>Homepage will go here ...</p>
+            <p>Homepage content goes here ...</p>
         </div>
     );
   }
