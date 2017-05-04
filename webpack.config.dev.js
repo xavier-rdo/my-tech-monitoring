@@ -4,6 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtools: 'eval-source-map',
   entry: [
+    'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     path.join(__dirname, '/client/index.js')
   ],
@@ -24,7 +25,7 @@ module.exports = {
         include: [
           path.join(__dirname, 'client')
         ],
-        loaders: [ 'react-hot', 'babel' ]
+        loaders: [ 'babel' ]
       },
       {
         test: /\.css$/,

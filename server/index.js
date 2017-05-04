@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import favicon from 'serve-favicon';
 
 import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.dev';
 
@@ -20,7 +20,7 @@ app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 const compiler = webpack(webpackConfig);
 
-app.use(webpackMiddleware(compiler, {
+app.use(webpackDevMiddleware(compiler, {
   hot: true,
   publicPath: webpackConfig.output.publicPath,
   noInfo: true
