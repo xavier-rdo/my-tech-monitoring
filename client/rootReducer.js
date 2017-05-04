@@ -1,10 +1,10 @@
-// @todo: combine many domain reducers (users, resources, etc.)
+import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+import UserReducer from './users/reducer';
 
-const rootReducer = (state = {}, action) => {
-  switch (action.type) {
-    default:
-        return state;
-  }
-};
+const rootReducer = combineReducers({
+    user: UserReducer,
+    form: formReducer
+});
 
 export default rootReducer;

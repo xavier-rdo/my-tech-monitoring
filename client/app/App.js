@@ -7,6 +7,7 @@ import {
 
 import './App.css';
 import Homepage from './Homepage';
+import SignupPage from '../users/SignupPage';
 import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 
@@ -17,6 +18,7 @@ class App extends React.Component {
         <div className="App">
           <NavigationBar />
           <Route exact path="/" component={Homepage}/>
+          <Route exact path="/signup" component={SignupPage}/>
           <Footer />
         </div>
       </Router>

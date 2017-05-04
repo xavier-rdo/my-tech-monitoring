@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 
 import rootReducer from './rootReducer';
 import App from './app/App';
+import Footer from './app/Footer';
 
 const store = createStore(
   rootReducer,

@@ -24,6 +24,7 @@ class NavigationBar extends React.Component {
                       <input type="password" placeholder="Password" className="form-control"/>
                     </div>
                     <button type="submit" className="btn btn-success">Sign in</button>
+                    <Link to="/signup" className="btn btn-primary">Sign up</Link>
                   </form>
                 </div>
               </div>
