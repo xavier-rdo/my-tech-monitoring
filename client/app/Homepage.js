@@ -1,16 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createFetchHomepageResourcesAction } from '../resources/actions';
 
 const ajaxLoaderImg = require('./images/ajax-loader-long.gif');
 
-// @todo: to split into a presentational component and a component container
-class HomepageComponent extends React.Component {
+class Homepage extends React.Component {
   componentDidMount() {
     this.props.loadData()
   }
 
+  // @todo: move ajax loading image and error text in dedicated presentational components
+  // @todo: add also some text to ajax loading image, eg <h2>Loading ...</h2>
   render() {
     const { data, isFetching, hasError } = this.props;
     return (
@@ -29,32 +28,11 @@ class HomepageComponent extends React.Component {
   }
 }
 
-HomepageComponent.propTypes = {
+Homepage.propTypes = {
     data: PropTypes.array.isRequired,
     pagination: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired,
     hasError: PropTypes.bool.isRequired
 };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadData() {
-      dispatch(createFetchHomepageResourcesAction());
-    }
-  }
-}
-
-const mapStateToProps = (state) => {
-  const { data, pagination, isFetching, hasError } = state.homepageResources;
-
-  return {
-    data,
-    pagination,
-    isFetching,
-    hasError
-  };
-}
-
-const Homepage = connect(mapStateToProps, mapDispatchToProps)(HomepageComponent);
 
 export default Homepage;
