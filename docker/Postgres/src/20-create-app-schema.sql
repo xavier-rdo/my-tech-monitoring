@@ -5,7 +5,7 @@ CREATE SCHEMA model;
 CREATE TABLE model.techresources (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    baseline VARCHAR(512),
+    header VARCHAR(512),
     link VARCHAR(512) NOT NULL,
     tags TEXT[],
     created_at DATE NOT NULL default current_date,

@@ -4,6 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtools: 'eval-source-map',
   entry: [
+    'babel-polyfill',
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     path.join(__dirname, '/client/index.js')
@@ -30,8 +31,30 @@ module.exports = {
       {
         test: /\.css$/,
         loaders: [ 'style', 'css', 'sass' ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack-loader'
+        ]
       }
     ]
+  },
+  imageWebpackLoader: {
+    gifsicle: {
+      interlaced: false
+    },
+    optipng: {
+      optimizationLevel: 7
+    },
+    mozjpeg: {
+      quality: 65
+    },
+    pngquant:{
+      quality: "65-90",
+      speed: 4
+    }
   },
   resolve: {
     extentions: [ '', '.js' ]

@@ -80,5 +80,3 @@ export default reduxForm({
 // @todo: prop type checking
 // @see https://facebook.github.io/react/docs/typechecking-with-proptypes.html (!!deprecated!!)
 // @see https://github.com/reactjs/prop-types
-
-
