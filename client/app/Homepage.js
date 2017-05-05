@@ -1,26 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const ajaxLoaderImg = require('./images/ajax-loader-long.gif');
+import Error from '../common/components/Error';
+import LoadingGroup from '../common/components/LoadingGroup';
 
 class Homepage extends React.Component {
   componentDidMount() {
     this.props.loadData()
   }
 
-  // @todo: move ajax loading image and error text in dedicated presentational components
-  // @todo: add also some text to ajax loading image, eg <h2>Loading ...</h2>
   render() {
     const { data, isFetching, hasError } = this.props;
     return (
         <div className="form-row">
             <div className="col-md-8 col-md-offset-2 text-center">
             {
-                isFetching &&
-                <img src={ajaxLoaderImg} />
+                isFetching && <LoadingGroup />
             }
             {
-                hasError && <p className="bg-danger text-danger">An error occurred during data loading.</p>
+                hasError && <Error message="An error occurred during data loading." />
             }
             </div>
         </div>

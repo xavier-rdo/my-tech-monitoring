@@ -7,7 +7,6 @@ import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './rootReducer';
 import App from './app/App';
-import Footer from './app/Footer';
 
 import { homepageResourcesSaga } from './resources/sagas';
 

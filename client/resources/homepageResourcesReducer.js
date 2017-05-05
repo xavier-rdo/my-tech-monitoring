@@ -15,6 +15,7 @@ const initialState = {
   }
 };
 
+// @todo: refacto > rename (domain name - eg `allResourcesReducer` - not presentational name)
 export default function HomepageResourcesReducer (state = initialState, action) {
   switch (action.type) {
     case HOMEPAGE_RESOURCES_FETCHING:
