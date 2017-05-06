@@ -3,6 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   devtools: 'eval-source-map',
+  watch: true,
   entry: [
     'babel-polyfill',
     'react-hot-loader/patch',
