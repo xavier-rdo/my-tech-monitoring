@@ -22,7 +22,7 @@ class ApiClient {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
               return resolve(resources);
-            }, 2000);
+            }, 1000);
         });
     }
 

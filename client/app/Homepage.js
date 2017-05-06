@@ -12,6 +12,9 @@ class Homepage extends React.Component {
     const { data, isFetching, hasError } = this.props;
     return (
         <div className="form-row">
+            <h1 className="col-md-8 col-md-offset-2 text-center">
+                Technical resources
+            </h1>
             <div className="col-md-8 col-md-offset-2 text-center">
             {
                 isFetching && <LoadingGroup />
@@ -20,8 +23,24 @@ class Homepage extends React.Component {
                 hasError && <Error message="An error occurred during data loading." />
             }
             </div>
+            <div className="col-md-8 col-md-offset-2 tech-resource-grid">
+                { this.renderResources(data) }
+            </div>
         </div>
     );
+  }
+
+  renderResources(resources = []) {
+    return resources.map(function (resource) {
+        return (
+            <div className="tech-resource-item" key={ resource.id }>
+                <h2>{ resource.title }</h2>
+                <div className="tech-resource-item-body">
+                    <p>{ resource.link }</p>
+                </div>
+            </div>
+        );
+    });
   }
 }
 
