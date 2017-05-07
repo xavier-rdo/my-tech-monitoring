@@ -25,18 +25,21 @@ class ApiClient {
     /**
      * Mock method that simulates a GET API call and returns mock data, used for fast prototyping.
      *
-     * @return {Promise|Array|Object[]}
+     * @return {Promise|Object}
      */
     getMockResources() {
-        const resources = [
-          { id: 1, title: 'Redux Official', header: 'Redux is a predictable state container for JavaScript apps', link: 'http://redux.js.org/' },
-          { id: 2, title: 'React Official', header: 'A Javascript Library for Building User Interfaces', link: 'https://facebook.github.io/react/' },
-          { id: 3, title: 'Webpack Official', header: 'Webpack, the Flexible module bundler', link: 'https://webpack.js.org/concepts/' }
-        ];
+        const resources = {
+          data: [
+            { id: 1, title: 'Redux Official', header: 'Redux is a predictable state container for JavaScript apps', link: 'http://redux.js.org/' },
+            { id: 2, title: 'React Official', header: 'A Javascript Library for Building User Interfaces', link: 'https://facebook.github.io/react/' },
+            { id: 3, title: 'Webpack Official', header: 'Webpack, the Flexible module bundler', link: 'https://webpack.js.org/concepts/' }
+          ],
+          pagination: {}
+        };
 
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-              return resolve(resources);
+              return resolve({data: resources});
             }, 1000);
         });
     }
@@ -49,7 +52,7 @@ class ApiClient {
      * @return {Promise|JSON} Response JSON from API server as { data: [...], pagination: {...}}
      */
     getAllResources(pagination = {}) {
-        uri = this.getUri(ALL_TECH_RESOURCES_URN);
+        const uri = this.getUri(ALL_TECH_RESOURCES_URN);
 
         return axios.get(uri);
     }

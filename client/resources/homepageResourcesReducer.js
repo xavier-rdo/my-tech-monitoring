@@ -26,8 +26,8 @@ export default function HomepageResourcesReducer (state = initialState, action) 
     case HOMEPAGE_RESOURCES_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        data: action.data,
-        pagination: action.pagination
+        data: action.payload.data,
+        pagination: action.payload.pagination
       });
     case HOMEPAGE_RESOURCES_FAILURE:
       return Object.assign({}, state, {

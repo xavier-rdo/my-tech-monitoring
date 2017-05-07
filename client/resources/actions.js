@@ -12,11 +12,13 @@ export function createFetchHomepageResourcesAction(pagination = {}) {
     };
 };
 
-export function createHomepageResourcesSuccessAction(data) {
+export function createHomepageResourcesSuccessAction(response) {
     return {
         type: HOMEPAGE_RESOURCES_SUCCESS,
-        data: data,
-        pagination: {}
+        payload: {
+            data: response.data,
+            pagination: response.pagination
+        }
     };
 };
 

@@ -10,12 +10,17 @@ import {
     createHomepageResourcesFailureAction
 } from './actions';
 
+// @todo: delegate apiClient instantiation to a dedicated service (relying on a config that holds constructor params)
+// @see https://github.com/lorenwest/node-config
+// @see https://github.com/marmelab/javascript-boilerplate/tree/master/config
 const apiClient = new ApiClient('http', 'localhost', 3000);
 
 function* fetchHomepageResources (action) {
   try {
-    const data = yield apiClient.getMockResources();
-    yield put(createHomepageResourcesSuccessAction(data));
+    // const response = yield apiClient.getMockResources({});
+    const response = yield apiClient.getAllResources({});
+    // @todo: handle API response with code != 200
+    yield put(createHomepageResourcesSuccessAction(response.data));
   } catch (e) {
     yield put(createHomepageResourcesFailureAction());
   }
