@@ -10,7 +10,7 @@ import {
     createHomepageResourcesFailureAction
 } from './actions';
 
-const apiClient = new ApiClient('localhost', 3000);
+const apiClient = new ApiClient('http', 'localhost', 3000);
 
 function* fetchHomepageResources (action) {
   try {

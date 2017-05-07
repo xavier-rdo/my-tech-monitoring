@@ -2,15 +2,30 @@ import axios from 'axios';
 
 const ALL_TECH_RESOURCES_URN = '/api/techresources';
 
+/**
+ * API client that acts as a facade to request the API server.
+ */
 class ApiClient {
 
-    constructor(domain = 'localhost', port = 3000) {
+    /**
+     * @constructor
+     *
+     * @param  {String} scheme https|http
+     * @param  {String} domain
+     * @param  {Number} port
+     *
+     * @return {ApiClient}
+     */
+    constructor(scheme = 'https', domain = 'localhost', port = 3000) {
+        this.scheme = scheme;
         this.domain = domain;
         this.port = port;
     }
 
     /**
-     * @return {Promise}
+     * Mock method that simulates a GET API call and returns mock data, used for fast prototyping.
+     *
+     * @return {Promise|Array|Object[]}
      */
     getMockResources() {
         const resources = [
@@ -26,14 +41,28 @@ class ApiClient {
         });
     }
 
+    /**
+     * Return all technical resources paginated.
+     *
+     * @param  {Object}
+     *
+     * @return {Promise|JSON} Response JSON from API server as { data: [...], pagination: {...}}
+     */
     getAllResources(pagination = {}) {
         uri = this.getUri(ALL_TECH_RESOURCES_URN);
 
         return axios.get(uri);
     }
 
+    /**
+     * Get the full URN (scheme, domain, port and URI) for a given URI (eg `/api/users`).
+     *
+     * @param  {String} resourceUrn
+     *
+     * @return {String} Eg https://localhost:3000/api/users
+     */
     getUri(resourceUrn = '/') {
-        return this.domain + ':' + this.port + resourceUrn;
+        return this.scheme + '://' + this.domain + ':' + this.port + resourceUrn;
     }
 }
 
