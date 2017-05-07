@@ -15,3 +15,7 @@ CREATE TABLE model.techresources (
 CREATE INDEX app_techresources_title_idx ON model.techresources (title);
 CREATE INDEX app_techresources_tags_idx ON model.techresources USING GIN(tags);
 CREATE INDEX app_techresources_created_at_idx ON model.techresources (created_at);
+
+GRANT ALL PRIVILEGES ON SCHEMA model TO app;
+GRANT USAGE ON SCHEMA model TO app;
+GRANT ALL ON ALL TABLES IN SCHEMA model TO app;

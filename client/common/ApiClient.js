@@ -16,7 +16,7 @@ class ApiClient {
         const resources = [
           { id: 1, title: 'Redux Official', header: 'Redux is a predictable state container for JavaScript apps', link: 'http://redux.js.org/' },
           { id: 2, title: 'React Official', header: 'A Javascript Library for Building User Interfaces', link: 'https://facebook.github.io/react/' },
-          { id: 3, title: 'Webpack Official Site', header: 'Webpack, the Flexible module bundler', link: 'https://webpack.github.io/docs/' }
+          { id: 3, title: 'Webpack Official', header: 'Webpack, the Flexible module bundler', link: 'https://webpack.js.org/concepts/' }
         ];
 
         return new Promise((resolve, reject) => {

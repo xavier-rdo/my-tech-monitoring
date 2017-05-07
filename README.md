@@ -52,9 +52,8 @@ Ref.: https://docs.docker.com/engine/examples/postgresql_service/
     ## Start the database container as daemon and map Postgres' port 5432 to host:
     docker run --name my-tech-monitoring-db-server -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d my-tech-monitoring-db
     ## [Optional, for demo purposes only] Start the container once again in TTY mode in order to connect to the database through PSQL :
-    docker run -it --rm --name my-tech-monitoring-db-cli --link my-tech-monitoring-db-server[:<alias>] my-tech-monitoring-db /bin/bash
     ## Nota: Password for `postgres` role is `postgres`
-    root@0529614c4b44:/# psql -h $PG_PORT_5432_TCP_ADDR -p $PG_PORT_5432_TCP_PORT -d app -U postgres --password
+    docker run -it --rm --name my-tech-monitoring-db-cli --link my-tech-monitoring-db-server:db-server my-tech-monitoring-db psql -h db-server -d app -U postgres
     ## Show `model.techresources` table's structure :
     $ postgres=# \d+ model.techresources;
     ## Show `model.techresources` table's content : 

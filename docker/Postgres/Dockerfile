@@ -1,5 +1,8 @@
-FROM postgres:latest
+FROM postgres:9.6
 
-COPY ./src/10-create-app-database-and-user.sql /docker-entrypoint-initdb.d/10-create-app-database-and-user.sql
-COPY ./src/20-create-app-schema.sql /docker-entrypoint-initdb.d/20-create-app-schema.sql
-COPY ./src/30-populate-database.sql /docker-entrypoint-initdb.d/30-populate-database.sql
+COPY ./src/*.sql /docker-entrypoint-initdb.d/
+
+RUN mkdir -p /etc/postgresql/9.6/main
+RUN chmod -R 644 /etc/postgresql
+RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.6/main/pg_hba.conf
+RUN echo "listen_addresses='*'" >> /etc/postgresql/9.6/main/postgresql.conf
