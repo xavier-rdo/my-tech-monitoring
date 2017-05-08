@@ -1,8 +1,8 @@
-import conn from './conn';
+import knex from './knex';
 
 class TechResourcesRepository {
     getAllResources() {
-        return conn.any('select * from model.techresources');
+        return knex.select().table('model.techresources');
     };
 }
 

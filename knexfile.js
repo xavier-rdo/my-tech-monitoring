@@ -10,7 +10,8 @@ module.exports = {
     },
     seeds: {
       directory: __dirname + '/server/db/seeds/dev'
-    }
+    },
+    debug: true
   },
 
   test: {
