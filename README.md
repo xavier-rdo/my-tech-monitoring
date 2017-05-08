@@ -16,12 +16,14 @@ This Web app is based on the following technologies and patterns:
 
 ## Postgres database bootstrapping through Docker
 
-This project embeds a [`Dockerfile`](docker/Postgres/Dockerfile) that creates a new Docker image based on the latest `Postgres` official image and runs some bootstrapping SQL scripts (from the [docker/Postgres/src](docker/Postgres/src) folder) that create :
+This project embeds a [`Dockerfile`](docker/Postgres/Dockerfile) that creates a new Docker image based on the `Postgres:9.6` official image and runs some bootstrapping SQL scripts (from the [docker/Postgres/src](docker/Postgres/src) folder) that create :
 
 * an `app` user (password `app`)
 * an `app` database
 * a `model` schema
 * some tables in `model` schema populated with some initial data
+
+>In a foreseeable future, DB structure and seeding may be managed by a migration tool (such as Knex, for instance) to ease DB maintainance for various environments (dev, prod, testing, etc.)
 
 ### Usage:
 
@@ -58,4 +60,18 @@ Ref.: https://docs.docker.com/engine/examples/postgresql_service/
     $ postgres=# \d+ model.techresources;
     ## Show `model.techresources` table's content : 
     $ postgres=# select * from model.techresources;
+```
+
+### Mapping a local volume to Postgres data folder
+
+```shell
+    # cd to project's root directory:
+    cd <PROJECT_ROOT_DIR>
+    mkdir -P var/pgdata
+```
+
+Then, when running the container (`docker run` command), add the following option:
+
+```shell
+    -v ${PWD}/var/pgdata:/var/lib/postgresql/data
 ```

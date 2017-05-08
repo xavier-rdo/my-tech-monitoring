@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start": "nodemon --watch server --exec babel-node -- server/index.js",
-    "start-db": "docker run --name my-tech-monitoring-db-server -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d my-tech-monitoring-db",
+    "start-db": "docker run --name my-tech-monitoring-db-server -v ${PWD}/var/pgdata:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d my-tech-monitoring-db",
     "build": "webpack --config webpack.config.dev.js"
   }
 }
