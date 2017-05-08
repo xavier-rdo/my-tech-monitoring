@@ -21,7 +21,7 @@ This Web app is based on the following technologies and patterns:
 
 ## <a name="postgres"></a> Starting the Postgres database (through Docker)
 
-This project embeds a [`Dockerfile`](docker/Postgres/Dockerfile) that creates a new Docker image based on the `Postgres:9.6` official image and runs some bootstrapping SQL scripts (from the [docker/Postgres/src](docker/Postgres/src) folder) :
+This project embeds a [`Dockerfile`](docker/Postgres/Dockerfile) that creates a new Docker image based on the `Postgres:9.6` official image and runs some bootstrapping SQL scripts (from the [docker/Postgres/src](docker/Postgres/src) folder). These scripts execute the following commands during container build :
 
 * create an `app` DB user (password `app`)
 * create an `app` database
@@ -29,19 +29,30 @@ This project embeds a [`Dockerfile`](docker/Postgres/Dockerfile) that creates a 
 * create a `model` schema in each database
 * grant all permissions to `app` user for each database
 
-### Usage:
+### Build image and run the DB container:
 
 Ref.: https://docs.docker.com/engine/examples/postgresql_service/
 
-Start the DB container : `npm run start-db`
-
-> :warning: The container maps the local `var/pgdata` folder to container's Postgres data folder. You may have to run the following command in order to create that local folder:
+> :warning: The container maps the local `var/pgdata` folder to container's data folder. You may have to run the following command before running the container:
 
 ```shell
-    # cd to project's root directory:
+    ## cd to project's root directory:
     cd <PROJECT_ROOT_DIR>
     mkdir -p var/pgdata
 ```
+
+* Build the Postgres DB image: 
+
+```shell
+    ## Change directory where the Postgres Dockerfile is:
+    cd docker/Postgres
+    ## Build the image:
+    docker build -t my-tech-monitoring-db .
+```
+
+* Start the DB container : `npm run start-db`
+
+### Usage:
 
 Here are some useful commands for Docker & Postgres (as a reminder) :
 
@@ -64,14 +75,6 @@ Here are some useful commands for Docker & Postgres (as a reminder) :
     docker logs <containerId>
     ## End of reminder
 
-    ## Create a local `var/pgdata` folder (to host Postgres data on the host machine)
-    cd <PROJECT_ROOT_DIR>
-    mkdir -p var/pgdata
-
-    ## Change directory where the Postgres Dockerfile is:
-    cd docker/Postgres
-    ## Build the image:
-    docker build -t my-tech-monitoring-db .
     ## Start the database container as daemon:
     npm run start-db
     ## [Optional, for demo purposes only] Start the container once again in TTY mode in order to connect to the database through PSQL :
@@ -88,8 +91,9 @@ Here are some useful commands for Docker & Postgres (as a reminder) :
 ## <a name="migrations"></a> Running DB migrations and seeders
 
 ```shell
-    # Running migrations
+    ## Running migrations
     ./node_modules/.bin/knex migrate:latest --env <development|test>
-    # Running seeders (fixtures)
+
+    ## Running seeders (fixtures)
     ./node_modules/.bin/knex seed:run --env <development|test>
 ```
