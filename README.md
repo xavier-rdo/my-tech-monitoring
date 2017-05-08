@@ -14,20 +14,36 @@ This Web app is based on the following technologies and patterns:
 
 >:warning: This app is not perfect in many respects. I use it as an experimentation field for my training in technologies and concepts quite new for me (Single Page App, Server Side Rendering, ES6, React/Redux, Node/Express, Docker, Webpack, etc.)
 
-## Postgres database bootstrapping through Docker
+## Table of content
 
-This project embeds a [`Dockerfile`](docker/Postgres/Dockerfile) that creates a new Docker image based on the `Postgres:9.6` official image and runs some bootstrapping SQL scripts (from the [docker/Postgres/src](docker/Postgres/src) folder) that create :
+* [Starting the Postgres database](#postgres)
+* [Running DB migrations and seeders](#migrations)
 
-* an `app` user (password `app`)
-* an `app` database
-* a `model` schema
-* some tables in `model` schema populated with some initial data
+## <a name="postgres"></a> Starting the Postgres database (through Docker)
 
->In a foreseeable future, DB structure and seeding may be managed by a migration tool (such as Knex, for instance) to ease DB maintainance for various environments (dev, prod, testing, etc.)
+This project embeds a [`Dockerfile`](docker/Postgres/Dockerfile) that creates a new Docker image based on the `Postgres:9.6` official image and runs some bootstrapping SQL scripts (from the [docker/Postgres/src](docker/Postgres/src) folder) :
+
+* create an `app` DB user (password `app`)
+* create an `app` database
+* create an `app_test` database
+* create a `model` schema in each database
+* grant all permissions to `app` user for each database
 
 ### Usage:
 
 Ref.: https://docs.docker.com/engine/examples/postgresql_service/
+
+Start the DB container : `npm run start-db`
+
+> :warning: The container maps the local `var/pgdata` folder to container's Postgres data folder. You may have to run the following command in order to create that local folder:
+
+```shell
+    # cd to project's root directory:
+    cd <PROJECT_ROOT_DIR>
+    mkdir -p var/pgdata
+```
+
+Here are some useful commands for Docker & Postgres (as a reminder) :
 
 ```shell
 
@@ -48,30 +64,32 @@ Ref.: https://docs.docker.com/engine/examples/postgresql_service/
     docker logs <containerId>
     ## End of reminder
 
+    ## Create a local `var/pgdata` folder (to host Postgres data on the host machine)
+    cd <PROJECT_ROOT_DIR>
+    mkdir -p var/pgdata
+
+    ## Change directory where the Postgres Dockerfile is:
     cd docker/Postgres
     ## Build the image:
     docker build -t my-tech-monitoring-db .
-    ## Start the database container as daemon and map Postgres' port 5432 to host:
-    docker run --name my-tech-monitoring-db-server -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d my-tech-monitoring-db
+    ## Start the database container as daemon:
+    npm run start-db
     ## [Optional, for demo purposes only] Start the container once again in TTY mode in order to connect to the database through PSQL :
     ## Nota: Password for `postgres` role is `postgres`
     docker run -it --rm --name my-tech-monitoring-db-cli --link my-tech-monitoring-db-server:db-server my-tech-monitoring-db psql -h db-server -d app -U postgres
+    ## List tables (relations) in `model` schema :
+    $ postgres=# \dt model.*
     ## Show `model.techresources` table's structure :
-    $ postgres=# \d+ model.techresources;
+    $ postgres=# \d+ model.techresources
     ## Show `model.techresources` table's content : 
     $ postgres=# select * from model.techresources;
 ```
 
-### Mapping a local volume to Postgres data folder
+## <a name="migrations"></a> Running DB migrations and seeders
 
 ```shell
-    # cd to project's root directory:
-    cd <PROJECT_ROOT_DIR>
-    mkdir -P var/pgdata
-```
-
-Then, when running the container (`docker run` command), add the following option:
-
-```shell
-    -v ${PWD}/var/pgdata:/var/lib/postgresql/data
+    # Running migrations
+    ./node_modules/.bin/knex migrate:latest --env <development|test>
+    # Running seeders (fixtures)
+    ./node_modules/.bin/knex seed:run --env <development|test>
 ```
