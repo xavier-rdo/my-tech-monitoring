@@ -45,6 +45,6 @@
     "start": "nodemon --watch server --exec babel-node -- server/index.js",
     "start-db": "docker run --name my-tech-monitoring-db-server -v ${PWD}/var/pgdata:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d my-tech-monitoring-db",
     "build": "webpack --config webpack.config.dev.js",
-    "test": "mocha --compilers js:babel-core/register test/**/*.js"
+    "test": "NODE_PORT=3001 NODE_ENV=test mocha --timeout 5000 --compilers js:babel-core/register test/**/*.js"
   }
 }
