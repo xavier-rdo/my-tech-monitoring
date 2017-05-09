@@ -16,14 +16,14 @@ import {
 const apiClient = new ApiClient('http', 'localhost', 3000);
 
 function* fetchHomepageResources (action) {
-  try {
+    try {
     // const response = yield apiClient.getMockResources({});
-    const response = yield apiClient.getAllResources({});
+        const response = yield apiClient.getAllResources({});
     // @todo: handle API response with code != 200
-    yield put(createHomepageResourcesSuccessAction(response.data));
-  } catch (e) {
-    yield put(createHomepageResourcesFailureAction());
-  }
+        yield put(createHomepageResourcesSuccessAction(response.data));
+    } catch (e) {
+        yield put(createHomepageResourcesFailureAction());
+    }
 }
 
 export function* homepageResourcesSaga() {

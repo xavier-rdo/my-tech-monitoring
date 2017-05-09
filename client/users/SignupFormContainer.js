@@ -3,22 +3,22 @@ import SignupForm from './SignupForm';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
-  return {
+    return {
     /*
     resetMe: () => {
       dispatch(resetValidateUserFields());
     }
     */
-  }
-}
+    };
+};
 
 function mapStateToProps(state, ownProps) {
-  return {
+    return {
     /*
     user: state.user,
     validateFields: state.validateFields,
     */
-  };
+    };
 }
 
 export default connect(mapStateToProps/*, mapDispatchToProps */)(SignupForm);

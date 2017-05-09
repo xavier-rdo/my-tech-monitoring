@@ -10,7 +10,7 @@ export function createFetchHomepageResourcesAction(pagination = {}) {
             pagination: pagination
         }
     };
-};
+}
 
 export function createHomepageResourcesSuccessAction(response) {
     return {
@@ -20,10 +20,10 @@ export function createHomepageResourcesSuccessAction(response) {
             pagination: response.pagination
         }
     };
-};
+}
 
 export function createHomepageResourcesFailureAction() {
     return {
         type: HOMEPAGE_RESOURCES_FAILURE
-    }
+    };
 }

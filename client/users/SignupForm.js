@@ -6,7 +6,7 @@ import { Field, reduxForm } from 'redux-form';
 
 const validateAndSignUpUser = (values, dispatch) => {
     alert('OK');
-}
+};
 
 // @todo: move this function in a dedicated module, to be shared by all form components
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
@@ -26,35 +26,35 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 );
 
 const validate = values => {
-  const errors = {}
+    const errors = {};
 
-  if (!values.username || values.username === '') {
-    errors.username = 'Required';
-  }
+    if (!values.username || values.username === '') {
+        errors.username = 'Required';
+    }
 
-  if (!values.email || values.email === '') {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Wrong format';
-  }
+    if (!values.email || values.email === '') {
+        errors.email = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Wrong format';
+    }
 
-  if (!values.password || values.password === '') {
-    errors.password = 'Required';
-  } else if (values.password.length < 8) {
-    errors.password = '8 characters minimum';
-  }
+    if (!values.password || values.password === '') {
+        errors.password = 'Required';
+    } else if (values.password.length < 8) {
+        errors.password = '8 characters minimum';
+    }
 
-  if (values.password !== values.password_again) {
-    errors.password_again = 'Passwords must match';
-  }
+    if (values.password !== values.password_again) {
+        errors.password_again = 'Passwords must match';
+    }
 
-  return errors;
-}
+    return errors;
+};
 
 // @todo: add an avatar field (image upload)
 const SignupForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props
-  return (
+    const { handleSubmit, pristine, reset, submitting } = props;
+    return (
     <form onSubmit={handleSubmit} className="form-horizontal">
       <Field name="username" type="text" component={renderField} label="Username"/>
       <Field name="email" type="text" component={renderField} label="Email"/>
@@ -67,14 +67,14 @@ const SignupForm = (props) => {
         </div>
       </div>
     </form>
-  )
+    );
 };
 
 // @todo: inject onSubmit through props (from parent to keep this component 'dumb')
 export default reduxForm({
-  form: 'SignupForm', // a unique identifier for this form
-  validate,
-  onSubmit: () => alert('coucou'),
+    form: 'SignupForm', // a unique identifier for this form
+    validate,
+    onSubmit: () => alert('coucou'),
 })(SignupForm);
 
 // @todo: prop type checking

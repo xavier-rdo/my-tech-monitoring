@@ -11,6 +11,6 @@ class Error extends React.Component {
 
 Error.propTypes = {
     message: PropTypes.string.isRequired
-}
+};
 
 export default Error;

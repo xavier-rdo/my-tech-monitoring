@@ -4,13 +4,13 @@ import Error from '../common/components/Error';
 import LoadingGroup from '../common/components/LoadingGroup';
 
 class Homepage extends React.Component {
-  componentDidMount() {
-    this.props.loadData()
-  }
+    componentDidMount() {
+        this.props.loadData();
+    }
 
-  render() {
-    const { data, isFetching, hasError } = this.props;
-    return (
+    render() {
+        const { data, isFetching, hasError } = this.props;
+        return (
         <div className="form-row">
             <h1 className="col-md-8 col-md-offset-2 text-center">
                 Technical resources
@@ -27,21 +27,21 @@ class Homepage extends React.Component {
                 { this.renderResources(data) }
             </div>
         </div>
-    );
-  }
+        );
+    }
 
-  renderResources(resources = []) {
-    return resources.map(function (resource) {
-        return (
+    renderResources(resources = []) {
+        return resources.map(function (resource) {
+            return (
             <div className="tech-resource-item" key={ resource.id }>
                 <h2>{ resource.title }</h2>
                 <div className="tech-resource-item-body">
                     <p>{ resource.link }</p>
                 </div>
             </div>
-        );
-    });
-  }
+            );
+        });
+    }
 }
 
 Homepage.propTypes = {
