@@ -29,6 +29,8 @@
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "css-loader": "^0.28.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.0",
     "file-loader": "^0.11.1",
     "image-webpack-loader": "^3.3.0",
     "mocha": "^3.3.0",
@@ -45,6 +47,7 @@
     "start": "nodemon --watch server --exec babel-node -- server/index.js",
     "start-db": "docker run --name my-tech-monitoring-db-server -v ${PWD}/var/pgdata:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d my-tech-monitoring-db",
     "build": "webpack --config webpack.config.dev.js",
-    "test": "NODE_PORT=3001 NODE_ENV=test mocha --timeout 5000 --compilers js:babel-core/register test/**/*.js"
+    "test": "NODE_PORT=3001 NODE_ENV=test mocha --timeout 5000 --compilers js:babel-core/register test/**/*.js",
+    "eslint": "./node_modules/.bin/eslint ."
   }
 }
