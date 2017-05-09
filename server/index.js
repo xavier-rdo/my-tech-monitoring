@@ -28,9 +28,9 @@ app.use(favicon(path.join(__dirname, 'favicon.ico')));
 const compiler = webpack(webpackConfig);
 
 app.use(webpackDevMiddleware(compiler, {
-  hot: true,
-  publicPath: webpackConfig.output.publicPath,
-  noInfo: true
+    hot: true,
+    publicPath: webpackConfig.output.publicPath,
+    noInfo: true
 }));
 
 app.use(webpackHotMiddleware(compiler));
@@ -50,10 +50,10 @@ app.use('/api/users', users);
 /* *************************************** */
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './index.html'));
+    res.sendFile(path.join(__dirname, './index.html'));
 });
 
 const port = process.env.NODE_PORT || 3000;
-app.listen(port, () => console.log('Running on localhost:' + port));
+app.listen(port, () => console.log('Running on localhost:' + port)); // eslint-disable-line no-console
 
 export default app;
