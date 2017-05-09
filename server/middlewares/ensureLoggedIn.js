@@ -18,7 +18,7 @@ export default (req, res, next) => {
     let token;
 
     if (authorizationHeader) {
-      token = authorizationHeader.split(' ')[1];
+        token = authorizationHeader.split(' ')[1];
     }
 
     if (token) {
@@ -47,4 +47,4 @@ export default (req, res, next) => {
             'errorMessage': 'Unauthorized. Authentication required.'
         });
     }
-}
+};

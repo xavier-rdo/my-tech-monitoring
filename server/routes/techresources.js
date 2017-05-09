@@ -11,18 +11,18 @@ router.get('/', (req, res) => {
     techResourcesRepository.getAllResources()
         .then(function(data) {
             res.status(200)
-               .json({
+                .json({
                     data: data,
                     pagination: {}
                 });
         })
         .catch(function (err) {
             res.status(500)
-               .json({
+                .json({
                     errorCode: 1020,
                     errorMessage: 'Database request has failed : ' + err
                 });
-        });
+        })
     ;
 });
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 
 import './App.css';
@@ -12,18 +11,18 @@ import NavigationBar from './NavigationBar';
 import Footer from './Footer';
 
 class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <NavigationBar />
-          <Route exact path="/" component={HomepageContainer}/>
-          <Route exact path="/signup" component={SignupPage}/>
-          <Footer />
-        </div>
-      </Router>
-    );
-  }
+    render() {
+        return (
+            <Router>
+                <div className="App">
+                    <NavigationBar />
+                    <Route exact path="/" component={HomepageContainer}/>
+                    <Route exact path="/signup" component={SignupPage}/>
+                    <Footer />
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
