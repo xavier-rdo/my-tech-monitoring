@@ -11,11 +11,11 @@ class Homepage extends React.Component {
     render() {
         const { data, isFetching, hasError } = this.props;
         return (
-        <div className="form-row">
-            <h1 className="col-md-8 col-md-offset-2 text-center">
+        <div>
+            <h1 className="text-center">
                 Technical resources
             </h1>
-            <div className="col-md-8 col-md-offset-2 text-center">
+            <div className="text-center">
             {
                 isFetching && <LoadingGroup />
             }
@@ -23,7 +23,7 @@ class Homepage extends React.Component {
                 hasError && <Error message="An error occurred during data loading." />
             }
             </div>
-            <div className="col-md-8 col-md-offset-2 tech-resource-grid">
+            <div className="tech-resource-grid">
                 { this.renderResources(data) }
             </div>
         </div>

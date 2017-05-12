@@ -42,3 +42,9 @@
 .App .tech-resource-grid .tech-resource-item-body {
     padding: 10px;
 }
+
+.App footer {
+    margin-top: 25px;
+    padding: 20px;
+    border-top: 1px solid lightgrey;
+}

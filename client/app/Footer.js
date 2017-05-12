@@ -3,8 +3,8 @@ import React from 'react';
 class Footer extends React.Component {
     render() {
         return (
-        <footer>
-            <p></p>
+        <footer className="text-center">
+            <p>Here goes footer content ...</p>
         </footer>
         );
     }

@@ -14,10 +14,14 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div className="App">
+                <div className="App container-fluid">
                     <NavigationBar />
-                    <Route exact path="/" component={HomepageContainer}/>
-                    <Route exact path="/signup" component={SignupPage}/>
+                    <div className="row">
+                        <div className="col-md-8 col-md-offset-2">
+                            <Route exact path="/" component={HomepageContainer}/>
+                            <Route exact path="/signup" component={SignupPage}/>
+                        </div>
+                    </div>
                     <Footer />
                 </div>
             </Router>
